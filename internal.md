@@ -17,12 +17,17 @@ grep 10 >> cleaned_ips.txt && nmap --max-rtt-timeout 100ms --initial-rtt-timeout
 7) Profit
 
 ## Exploitation
-
+1) Stop, think, am I going to break shit?
+2) RECORD EVERY STEP
+3) Verify your exploit will work
+4) Clean up after yourself
 
 ## Post-Exploitation
 
 
 ## Useful shit
+
+#### Use eternalblue_psexec - the others hardly work
 
 ### Dont always have to crack the hash, maybe pass it??
 ```
