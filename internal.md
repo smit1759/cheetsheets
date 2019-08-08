@@ -1,9 +1,17 @@
 # Internal Pen test cheetsheet
 
 ## Recon
-
-
-
+1) Use wireshark to listen for 30mins, once completed sift through it and try to identify hosts/interesting things.
+2) Get/determine subnets in scope and add them to a file called ips.txt.
+3) Run nmap ping scans to determine which hosts are up in the subnet, then full TCP/UDP scan. The below command does it all and saves at every step.
+```
+nmap --max-rtt-timeout 100ms --initial-rtt-timeout 100ms --max-retries 0 -sn \
+-iL ./ips.txt > results_all.txt && cat results_all.txt | grep up -B1 | cut -d " " -f5 | \
+grep 10 >> cleaned_ips.txt && nmap --max-rtt-timeout 100ms --initial-rtt-timeout 100ms \ 
+--max-retries 0 -sS -sU -sC -sV -O -T4 -p- -v -n -Pn -PS -A --open -iL ./cleaned_ips.txt -oA *CLIENT NAME*
+```
+4) Now you have all the up hosts, their ports etc, feed the XML into pentest-machine, it'll speed up the enumeration of large subnets.
+5) Eliminate low hanging fruit
 
 ## Exploitation
 
