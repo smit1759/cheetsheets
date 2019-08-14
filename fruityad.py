@@ -13,8 +13,9 @@ with open(sys.argv[1]) as csv_file:
       i = 0
       for row in csv_reader:
         if "Server 200" in row[4] or "Server 2012" in row[4]:
-          bad[i] = "Name: "+ row[1] + "\nIP" + row[3] + "\nOS" + row[4] + "\n"
+          bad[i] = "Name: "+ row[1] + "\nIP: " + row[3] + "\nOS: " + row[4] + "\n"
         line_count += 1
+        i+=1
 print("Processed, results below \n")
 for b in bad:
   print(bad[b])
