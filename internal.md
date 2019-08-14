@@ -23,7 +23,11 @@ grep 10 >> cleaned_ips.txt && nmap --max-rtt-timeout 100ms --initial-rtt-timeout
 4) Clean up after yourself
 
 ## Post-Exploitation
-
+1) Open RDP (Makes other exploits easier to run) - Use the Remmina client on Kali
+2) Procdump lsass.exe (or import kiwi/mimikatz on MSF) for creds\
+3) Investigate host
+4) Check if its a constrained delegation host
+5) Pray you've dumped DA's creds
 
 ## Useful shit
 
